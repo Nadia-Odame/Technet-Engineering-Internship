@@ -1,0 +1,33 @@
+@startuml TEDE_Project_Execution_Activity_Diagram
+
+start
+
+:Receive approved quotation;
+
+:Create project;
+
+:Assign project manager;
+
+:Schedule technicians;
+
+:Allocate inventory;
+
+:Perform site work;
+
+if (Work completed?) then (Yes)
+
+:Generate inspection report;
+
+:Generate invoice;
+
+:Notify customer;
+
+stop
+
+else (No)
+
+:Continue work;
+
+endif
+
+@enduml
