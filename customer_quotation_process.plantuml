@@ -1,0 +1,37 @@
+@startuml TEDE_Customer_Quotation_Process
+autonumber
+
+actor Customer
+participant "Technet Connect" as Connect
+participant "Technnet ERP" as ERP
+participant "Sales Officer" as Sales
+participant "Operations Module" as Ops
+database Database
+
+Customer -> Connect : Submit quotation request
+Connect -> ERP : Create quotation request
+ERP -> Database : Save request
+Database --> ERP : Request saved
+
+ERP -> Sales : Notify new quotation request
+
+Sales -> ERP : Prepare quotation
+ERP -> Database : Save quotation
+
+ERP -> Connect : Send quotation
+
+Connect -> Customer : Display quotation
+
+Customer -> Connect : Accept quotation
+
+Connect -> ERP : Confirm acceptance
+
+ERP -> Database : Create project
+
+ERP -> Ops : Create work order
+
+Ops --> ERP : Project created
+
+ERP --> Customer : Project confirmation
+
+@enduml
