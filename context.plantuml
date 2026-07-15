@@ -1,0 +1,45 @@
+@startuml TEDE_Context_Diagram
+left to right direction
+skinparam shadowing false
+skinparam packageStyle rectangle
+
+actor Customer
+actor "Sales Officer" as Sales
+actor Technician
+actor "Operations Manager" as Ops
+actor "HR Officer" as HR
+actor "Finance Officer" as Finance
+actor Storekeeper
+actor "Marketing Officer" as Marketing
+actor "Managing Director" as Director
+actor "System Administrator" as Admin
+actor Supplier
+
+rectangle "Technnet Enterprise Digital Ecosystem" as TEDE {
+}
+
+cloud "Attendance Provider" as Attendance
+cloud "Google Maps API" as Maps
+cloud "OpenAI API" as AI
+cloud "Email Service" as Email
+cloud "SMS Gateway" as SMS
+
+Customer --> TEDE : Request quotations\nTrack projects\nRequest maintenance
+Sales --> TEDE : Manage quotations\nManage customers
+Technician --> TEDE : Update work orders\nSubmit reports
+Ops --> TEDE : Schedule technicians\nMonitor projects
+HR --> TEDE : Attendance\nLeave\nPayroll
+Finance --> TEDE : Invoices\nPayments
+Storekeeper --> TEDE : Inventory\nStock
+Marketing --> TEDE : Campaigns\nContent
+Director --> TEDE : Dashboards\nKPIs\nReports
+Admin --> TEDE : User management
+Supplier --> TEDE : Purchase orders
+
+TEDE --> Attendance : Attendance synchronization
+TEDE --> Maps : GPS verification
+TEDE --> AI : AI content generation
+TEDE --> Email : Email notifications
+TEDE --> SMS : SMS alerts
+
+@enduml
