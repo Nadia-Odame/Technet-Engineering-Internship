@@ -1,0 +1,67 @@
+@startuml TEDE_Enterprise_Domain_Model
+left to right direction
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+
+class Customer
+class Quotation
+class Project
+class WorkOrder
+class Technician
+class MaintenanceRequest
+class MaintenanceContract
+class MaintenanceReport
+class Asset
+
+class Employee
+class Attendance
+class LeaveRequest
+class Payroll
+
+class Supplier
+class PurchaseOrder
+class InventoryItem
+class Warehouse
+
+class Invoice
+class Payment
+
+class MarketingCampaign
+class ContentPost
+class SocialMediaPlatform
+
+class Dashboard
+class Report
+
+Customer "1" --> "*" Quotation
+Quotation "1" --> "1" Project
+Project "1" --> "*" WorkOrder
+Technician "1" --> "*" WorkOrder
+
+Project "1" --> "*" Asset
+Asset "1" --> "*" MaintenanceContract
+MaintenanceContract "1" --> "*" MaintenanceRequest
+MaintenanceRequest "1" --> "1" MaintenanceReport
+
+Project "1" --> "*" Invoice
+Invoice "1" --> "*" Payment
+
+Employee "1" --> "*" Attendance
+Employee "1" --> "*" LeaveRequest
+Employee "1" --> "*" Payroll
+
+Supplier "1" --> "*" PurchaseOrder
+PurchaseOrder "*" --> "*" InventoryItem
+Warehouse "1" --> "*" InventoryItem
+
+MarketingCampaign "1" --> "*" ContentPost
+ContentPost "*" --> "*" SocialMediaPlatform
+
+Dashboard --> Report
+Dashboard --> Project
+Dashboard --> Invoice
+Dashboard --> Attendance
+Dashboard --> InventoryItem
+Dashboard --> MarketingCampaign
+
+@enduml
