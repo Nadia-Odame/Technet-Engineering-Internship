@@ -1,0 +1,29 @@
+@startuml TEDE_Work_Order_Lifecycle
+
+[*] --> Created
+
+Created --> Assigned
+
+Assigned --> Accepted
+
+Accepted --> InProgress
+
+InProgress --> WaitingForParts
+
+WaitingForParts --> InProgress
+
+InProgress --> Inspection
+
+Inspection --> Completed
+
+Completed --> Invoiced
+
+Invoiced --> Closed
+
+Completed --> Reopened
+
+Reopened --> InProgress
+
+Closed --> [*]
+
+@enduml
