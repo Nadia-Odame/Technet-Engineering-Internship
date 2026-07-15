@@ -1,0 +1,63 @@
+@startuml TEDE_Enterprise_Package_Diagram
+
+package "Presentation Layer" {
+
+package "Customer Portal"
+
+package "Staff Portal"
+
+package "Mobile App"
+
+package "Executive Dashboard"
+
+}
+
+package "Business Layer" {
+
+package "Technet ERP"
+
+package "Technet Connect"
+
+package "Technet Operations"
+
+package "Technet Maintenance"
+
+package "Technet Workforce"
+
+package "Technet Digital Marketing"
+
+package "Technet Insight"
+
+}
+
+package "Integration Layer" {
+
+package "Authentication"
+
+package "Attendance Sync"
+
+package "Notifications"
+
+package "AI Services"
+
+package "Maps Integration"
+
+}
+
+package "Data Layer" {
+
+package "PostgreSQL"
+
+package "Document Storage"
+
+package "Audit Logs"
+
+}
+
+"Presentation Layer" --> "Business Layer"
+
+"Business Layer" --> "Integration Layer"
+
+"Integration Layer" --> "Data Layer"
+
+@enduml
