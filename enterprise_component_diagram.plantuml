@@ -1,0 +1,70 @@
+@startuml TEDE_Enterprise_Component_Diagram
+skinparam componentStyle rectangle
+
+component "Customer Portal\n(Technet Connect)" as Connect
+
+component "Technet ERP" as ERP
+
+component "Technet Operations" as Operations
+
+component "Technet Maintenance" as Maintenance
+
+component "Technet Workforce" as Workforce
+
+component "Technet Digital Marketing" as Marketing
+
+component "Technet Insight" as Insight
+
+component "Authentication Service" as Auth
+
+component "Notification Service" as Notify
+
+component "Attendance Integration" as Attendance
+
+component "AI Content Service" as AI
+
+database "Central PostgreSQL Database" as DB
+
+Auth --> ERP
+Auth --> Connect
+Auth --> Operations
+Auth --> Maintenance
+Auth --> Workforce
+Auth --> Marketing
+Auth --> Insight
+
+Connect --> ERP
+
+ERP --> Operations
+
+Operations --> Maintenance
+
+Workforce --> ERP
+
+Marketing --> Insight
+
+ERP --> Insight
+
+Operations --> Insight
+
+Maintenance --> Insight
+
+Workforce --> Insight
+
+Connect --> Notify
+
+ERP --> Notify
+
+Workforce --> Attendance
+
+Marketing --> AI
+
+ERP --> DB
+Connect --> DB
+Operations --> DB
+Maintenance --> DB
+Workforce --> DB
+Marketing --> DB
+Insight --> DB
+
+@enduml
