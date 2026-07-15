@@ -1,0 +1,36 @@
+@startuml TEDE_Maintenance_Request
+autonumber
+
+actor Customer
+
+participant "Technnet Connect"
+
+participant "Technnet Maintenance"
+
+participant Technician
+
+participant Inventory
+
+participant "Technnet Insight"
+
+database Database
+
+Customer -> "Technnet Connect" : Submit maintenance request
+
+"Technnet Connect" -> "Technnet Maintenance" : Create work order
+
+"Technnet Maintenance" -> Technician : Assign technician
+
+Technician -> "Technnet Maintenance" : Accept assignment
+
+Technician -> Inventory : Request spare parts
+
+Inventory --> Technician : Issue parts
+
+Technician -> "Technnet Maintenance" : Upload inspection report
+
+"Technnet Maintenance" -> Database : Save report
+
+"Technnet Maintenance" -> "Technnet Insight" : Update KPIs
+
+@enduml
