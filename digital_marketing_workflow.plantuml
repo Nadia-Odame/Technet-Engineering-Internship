@@ -1,0 +1,33 @@
+@startuml TEDE_Digital_Marketing_Workflow_Activity_Diagram
+
+start
+
+:Marketing officer selects campaign;
+
+:Choose social platform;
+
+:Generate AI content;
+
+:Generate AI image suggestion;
+
+:Edit content;
+
+if (Approved?) then (Yes)
+
+:Schedule post;
+
+:Publish automatically;
+
+:Collect analytics;
+
+:Update Insight Dashboard;
+
+stop
+
+else (No)
+
+:Revise content;
+
+endif
+
+@enduml
