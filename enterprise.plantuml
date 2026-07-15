@@ -1,0 +1,88 @@
+@startuml TEDE_Enterprise
+left to right direction
+skinparam packageStyle rectangle
+
+actor Customer
+actor "Sales Officer" as Sales
+actor Technician
+actor "HR Officer" as HR
+actor "Finance Officer" as Finance
+actor Storekeeper
+actor "Marketing Officer" as Marketing
+actor "Managing Director" as Director
+actor Administrator
+
+rectangle "Technnet Enterprise Digital Ecosystem" {
+
+  package "Technnet Connect" {
+    usecase "Request Quotation" as UC1
+    usecase "Track Project" as UC2
+    usecase "Request Maintenance" as UC3
+  }
+
+  package "Technnet ERP" {
+    usecase "Manage Customers" as UC4
+    usecase "Generate Quotation" as UC5
+    usecase "Create Invoice" as UC6
+    usecase "Manage Inventory" as UC7
+    usecase "Manage Suppliers" as UC8
+    usecase "Manage Projects" as UC9
+  }
+
+  package "Technnet Operations" {
+    usecase "Assign Work Orders" as UC10
+    usecase "Update Project Status" as UC11
+  }
+
+  package "Technnet Maintenance" {
+    usecase "Schedule Maintenance" as UC12
+    usecase "Submit Inspection Report" as UC13
+  }
+
+  package "Technnet Workforce" {
+    usecase "Synchronize Attendance" as UC14
+    usecase "Approve Leave" as UC15
+    usecase "Generate Payroll Report" as UC16
+  }
+
+  package "Technnet Digital Marketing" {
+    usecase "Generate AI Content" as UC17
+    usecase "Publish Campaign" as UC18
+  }
+
+  package "Technnet Insight" {
+    usecase "View Executive Dashboard" as UC19
+    usecase "Generate Reports" as UC20
+  }
+
+}
+
+Customer --> UC1
+Customer --> UC2
+Customer --> UC3
+
+Sales --> UC4
+Sales --> UC5
+
+Finance --> UC6
+
+Storekeeper --> UC7
+Storekeeper --> UC8
+
+Technician --> UC13
+
+HR --> UC14
+HR --> UC15
+HR --> UC16
+
+Marketing --> UC17
+Marketing --> UC18
+
+Director --> UC19
+Director --> UC20
+
+Administrator --> UC4
+Administrator --> UC7
+Administrator --> UC9
+
+@enduml
