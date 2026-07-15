@@ -1,0 +1,34 @@
+@startuml TEDE_Attendance_Synchronization
+autonumber
+
+actor Employee
+
+participant "Attendance Machine"
+
+participant "Attendance Provider"
+
+participant "Technnet Workforce"
+
+participant Payroll
+
+participant "Technnet Insight"
+
+database Database
+
+Employee -> "Attendance Machine" : Fingerprint / Face Scan
+
+"Attendance Machine" -> "Attendance Provider" : Upload attendance
+
+"Attendance Provider" -> "Technnet Workforce" : API Synchronization
+
+"Technnet Workforce" -> Database : Store attendance
+
+Database --> "Technnet Workforce"
+
+"Technnet Workforce" -> Payroll : Update attendance
+
+Payroll --> "Technnet Workforce"
+
+"Technnet Workforce" -> "Technnet Insight" : Update dashboard
+
+@enduml
