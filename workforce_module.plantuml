@@ -1,0 +1,29 @@
+@startuml TEDE_WorkforceModule
+
+class Employee{
++employeeId
++fullName
++department
+}
+
+class Attendance{
++attendanceId
++checkIn
++checkOut
+}
+
+class LeaveRequest{
++leaveId
++status
+}
+
+class Payroll{
++payrollId
++month
+}
+
+Employee "1" -- "*" Attendance
+Employee "1" -- "*" LeaveRequest
+Employee "1" -- "*" Payroll
+
+@enduml
