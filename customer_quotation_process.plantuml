@@ -3,13 +3,22 @@ autonumber
 
 actor Customer
 participant "Technet Connect" as Connect
+participant "Email Parsing Service" as EmailParser
 participant "Technnet ERP" as ERP
 participant "Sales Officer" as Sales
 participant "Operations Module" as Ops
 database Database
 
-Customer -> Connect : Submit quotation request
-Connect -> ERP : Create quotation request
+alt Portal submission
+  Customer -> Connect : Submit quotation request (form)
+  Connect -> ERP : Create quotation request
+else Email submission
+  Customer -> EmailParser : Send quotation request (email with item list)
+  EmailParser -> EmailParser : Parse item list from email
+  EmailParser -> ERP : Create quotation request
+  ERP -> Connect : Register request against customer's portal account
+end
+
 ERP -> Database : Save request
 Database --> ERP : Request saved
 

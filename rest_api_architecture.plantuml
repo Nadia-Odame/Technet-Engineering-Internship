@@ -1,0 +1,49 @@
+@startuml TEDE_Rest_Api_Architecture
+skinparam componentStyle rectangle
+
+package "Clients" {
+  [Customer Portal]
+  [Staff Portal]
+  [Mobile App]
+  [Executive Dashboard]
+}
+
+[API Gateway] as Gateway
+
+package "Business Services" {
+  [Auth Service] as Auth
+  [ERP Service] as ERP
+  [Connect Service] as Connect
+  [Operations Service] as Ops
+  [Maintenance Service] as Maint
+  [Workforce Service] as Workforce
+  [Marketing Service] as Marketing
+  [Insight Service] as Insight
+}
+
+database "PostgreSQL Database" as DB
+
+[Customer Portal] --> Gateway
+[Staff Portal] --> Gateway
+[Mobile App] --> Gateway
+[Executive Dashboard] --> Gateway
+
+Gateway --> Auth : /auth
+Gateway --> ERP : /erp
+Gateway --> Connect : /connect
+Gateway --> Ops : /operations
+Gateway --> Maint : /maintenance
+Gateway --> Workforce : /workforce
+Gateway --> Marketing : /marketing
+Gateway --> Insight : /insight
+
+Auth --> DB
+ERP --> DB
+Connect --> DB
+Ops --> DB
+Maint --> DB
+Workforce --> DB
+Marketing --> DB
+Insight --> DB
+
+@enduml
