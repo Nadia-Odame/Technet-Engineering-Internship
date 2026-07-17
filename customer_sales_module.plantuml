@@ -1,0 +1,35 @@
+@startuml TEDE_Customer_Sales_Module
+
+class Customer{
++customerId
++companyName
++contactPerson
++phone
++email
+}
+
+class Quotation{
++quotationId
++quotationNo
++amount
++status
++generatePDF()
+}
+
+class Invoice{
++invoiceId
++amount
++status
+}
+
+class Payment{
++paymentId
++amount
++paymentDate
+}
+
+Customer "1" -- "*" Quotation
+Quotation "1" -- "1" Invoice
+Invoice "1" -- "*" Payment
+
+@enduml
