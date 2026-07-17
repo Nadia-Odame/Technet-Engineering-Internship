@@ -1,0 +1,29 @@
+@startuml TEDE_MaintenanceModule
+
+class Asset{
++assetId
++serialNumber
++location
+}
+
+class MaintenanceContract{
++contractId
++frequency
++expiryDate
+}
+
+class MaintenanceSchedule{
++scheduleId
++date
+}
+
+class MaintenanceReport{
++reportId
++remarks
+}
+
+Asset "1" -- "*" MaintenanceContract
+MaintenanceContract "1" -- "*" MaintenanceSchedule
+MaintenanceSchedule "1" -- "1" MaintenanceReport
+
+@enduml
