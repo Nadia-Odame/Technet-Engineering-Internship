@@ -1,0 +1,55 @@
+@startuml TEDE_RBAC_Architecture
+left to right direction
+skinparam packageStyle rectangle
+
+actor Customer
+actor "Sales Officer" as Sales
+actor "Operations Manager" as Ops
+actor Technician
+actor "HR Officer" as HR
+actor "Finance Officer" as Finance
+actor Storekeeper
+actor "Marketing Officer" as Marketing
+actor "Managing Director" as Director
+actor Administrator
+
+rectangle "Role-Based Access Control" {
+  rectangle "Technnet Connect" as Connect
+  rectangle "Technnet ERP" as ERP
+  rectangle "Technnet Operations" as Operations
+  rectangle "Technnet Maintenance" as Maintenance
+  rectangle "Technnet Workforce" as Workforce
+  rectangle "Technnet Digital Marketing" as DigitalMarketing
+  rectangle "Technnet Insight" as Insight
+}
+
+Customer --> Connect
+
+Sales --> Connect
+Sales --> ERP
+
+Ops --> ERP
+Ops --> Operations
+
+Technician --> Operations
+Technician --> Maintenance
+
+HR --> Workforce
+
+Finance --> ERP : Finance module
+
+Storekeeper --> ERP : Inventory module
+
+Marketing --> DigitalMarketing
+
+Director --> Insight
+
+Administrator --> Connect
+Administrator --> ERP
+Administrator --> Operations
+Administrator --> Maintenance
+Administrator --> Workforce
+Administrator --> DigitalMarketing
+Administrator --> Insight
+
+@enduml
