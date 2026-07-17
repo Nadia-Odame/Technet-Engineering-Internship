@@ -1,0 +1,123 @@
+@startuml TEDE_EnterpriseERDiagram
+hide circle
+hide empty members
+
+entity USERS {
+  * user_id : UUID <<PK>>
+  --
+  username
+  password_hash
+  role_id : FK
+}
+
+entity ROLES {
+  * role_id : UUID <<PK>>
+  --
+  name
+}
+
+entity CUSTOMERS {
+  * customer_id : UUID <<PK>>
+  --
+  company_name
+  contact_person
+}
+
+entity QUOTATIONS {
+  * quotation_id : UUID <<PK>>
+  --
+  customer_id : FK
+  quotation_no
+  amount
+  status
+}
+
+entity PROJECTS {
+  * project_id : UUID <<PK>>
+  --
+  quotation_id : FK
+  status
+}
+
+entity WORK_ORDERS {
+  * work_order_id : UUID <<PK>>
+  --
+  project_id : FK
+  technician_id : FK
+  status
+}
+
+entity TECHNICIANS {
+  * technician_id : UUID <<PK>>
+  --
+  employee_id : FK
+}
+
+entity EMPLOYEES {
+  * employee_id : UUID <<PK>>
+  --
+  department
+  position
+}
+
+entity ATTENDANCE {
+  * attendance_id : UUID <<PK>>
+  --
+  employee_id : FK
+  date
+  check_in
+  check_out
+}
+
+entity ASSETS {
+  * asset_id : UUID <<PK>>
+  --
+  serial_number
+}
+
+entity MAINTENANCE_CONTRACTS {
+  * contract_id : UUID <<PK>>
+  --
+  asset_id : FK
+}
+
+entity INVENTORY_ITEMS {
+  * item_id : UUID <<PK>>
+  --
+  warehouse_id : FK
+  quantity
+}
+
+entity SUPPLIERS {
+  * supplier_id : UUID <<PK>>
+}
+
+entity PURCHASE_ORDERS {
+  * po_id : UUID <<PK>>
+  --
+  supplier_id : FK
+}
+
+entity CAMPAIGNS {
+  * campaign_id : UUID <<PK>>
+}
+
+entity CONTENT_POSTS {
+  * post_id : UUID <<PK>>
+  --
+  campaign_id : FK
+}
+
+ROLES ||--o{ USERS
+CUSTOMERS ||--o{ QUOTATIONS
+QUOTATIONS ||--|| PROJECTS
+PROJECTS ||--o{ WORK_ORDERS
+TECHNICIANS ||--o{ WORK_ORDERS
+EMPLOYEES ||--|| TECHNICIANS
+EMPLOYEES ||--o{ ATTENDANCE
+ASSETS ||--o{ MAINTENANCE_CONTRACTS
+SUPPLIERS ||--o{ PURCHASE_ORDERS
+PURCHASE_ORDERS }o--o{ INVENTORY_ITEMS
+CAMPAIGNS ||--o{ CONTENT_POSTS
+
+@enduml
