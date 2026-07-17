@@ -1,0 +1,26 @@
+@startuml TEDE_Authentication_Module
+skinparam classAttributeIconSize 0
+
+class User {
++userId: UUID
++username: String
++passwordHash: String
++status: String
++login()
++logout()
+}
+
+class Role {
++roleId: UUID
++name: String
+}
+
+class Permission {
++permissionId: UUID
++name: String
+}
+
+User "*" -- "1" Role
+Role "*" -- "*" Permission
+
+@enduml
