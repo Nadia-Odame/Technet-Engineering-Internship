@@ -1,29 +1,18 @@
 @startuml TEDE_InventoryModule
 
-class Employee{
-+employeeId
-+fullName
-+department
-}
+class Supplier
 
-class Attendance{
-+attendanceId
-+checkIn
-+checkOut
-}
+class PurchaseOrder
 
-class LeaveRequest{
-+leaveId
-+status
-}
+class Warehouse
 
-class Payroll{
-+payrollId
-+month
-}
+class InventoryItem
 
-Employee "1" -- "*" Attendance
-Employee "1" -- "*" LeaveRequest
-Employee "1" -- "*" Payroll
+class StockTransaction
+
+Supplier "1" -- "*" PurchaseOrder
+PurchaseOrder "*" -- "*" InventoryItem
+Warehouse "1" -- "*" InventoryItem
+InventoryItem "1" -- "*" StockTransaction
 
 @enduml
