@@ -1,0 +1,33 @@
+@startuml TEDE_JWT_Token_Lifecycle
+autonumber
+
+actor Client
+participant "API Gateway" as Gateway
+participant "Auth Service" as Auth
+participant "Business Service" as Service
+
+== Initial login ==
+Client -> Auth : Login (username, password)
+Auth --> Client : Access token (short-lived) + Refresh token (long-lived)
+
+== Authenticated request ==
+Client -> Gateway : Request + Authorization: Bearer <access token>
+Gateway -> Gateway : Verify token signature and expiry
+alt Token valid
+  Gateway -> Service : Forward request (with user identity + role)
+  Service --> Gateway : Response
+  Gateway --> Client : 200 OK
+else Token expired
+  Gateway --> Client : 401 Unauthorized (token expired)
+  Client -> Auth : POST /api/v1/auth/refresh (refresh token)
+  Auth -> Auth : Validate refresh token
+  Auth --> Client : New access token
+  Client -> Gateway : Retry request with new access token
+end
+
+== Logout ==
+Client -> Auth : POST /api/v1/auth/logout
+Auth -> Auth : Invalidate refresh token
+Auth --> Client : 200 OK
+
+@enduml
