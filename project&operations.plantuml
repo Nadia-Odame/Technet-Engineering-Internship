@@ -1,0 +1,32 @@
+@startuml TEDE_ProjectOperations
+
+class Project{
++projectId
++projectName
++status
++startDate
++endDate
+}
+
+class WorkOrder{
++workOrderId
++priority
++status
+}
+
+class ProjectTask{
++taskId
++title
++status
+}
+
+class Technician{
++technicianId
++specialization
+}
+
+Project "1" -- "*" ProjectTask
+Project "1" -- "*" WorkOrder
+Technician "1" -- "*" WorkOrder
+
+@enduml
