@@ -1,0 +1,25 @@
+@startuml TEDE_AuthenticationFlow
+autonumber
+
+actor User
+participant "Client App" as Client
+participant "Auth Service" as Auth
+database "Users Table" as DB
+
+User -> Client : Enter username & password
+Client -> Auth : POST /api/v1/auth/login
+Auth -> DB : Look up user by username
+DB --> Auth : User record (hashed password)
+Auth -> Auth : Verify password hash (bcrypt/Argon2)
+
+alt Credentials valid
+  Auth -> Auth : Generate JWT access token + refresh token
+  Auth --> Client : 200 OK (access token, refresh token)
+  Client -> Client : Store tokens securely
+  Client --> User : Access granted
+else Credentials invalid
+  Auth --> Client : 401 Unauthorized
+  Client --> User : Login failed
+end
+
+@enduml
