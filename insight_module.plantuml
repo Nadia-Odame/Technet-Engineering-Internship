@@ -1,0 +1,12 @@
+@startuml TEDE_InsightModule
+
+class Dashboard
+
+class KPI
+
+class Report
+
+Dashboard "1" -- "*" KPI
+Dashboard "1" -- "*" Report
+
+@enduml
