@@ -1,0 +1,15 @@
+@startuml TEDE_MarketingModule
+
+class Campaign
+
+class ContentPost
+
+class SocialPlatform
+
+class Analytics
+
+Campaign "1" -- "*" ContentPost
+ContentPost "*" -- "*" SocialPlatform
+Campaign "1" -- "1" Analytics
+
+@enduml
