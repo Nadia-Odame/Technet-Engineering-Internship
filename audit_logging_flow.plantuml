@@ -1,0 +1,17 @@
+@startuml TEDE_AuditLoggingFlow
+skinparam packageStyle rectangle
+
+rectangle "Layer 1: Network / Transport Security\nHTTPS / TLS encryption for all traffic" as L1
+rectangle "Layer 2: Authentication\nJWT-based login, bcrypt/Argon2 password hashing" as L2
+rectangle "Layer 3: Authorization\nRole-Based Access Control (RBAC) per module" as L3
+rectangle "Layer 4: Application Security\nInput validation, rate limiting, API Gateway enforcement" as L4
+rectangle "Layer 5: Data Security\nDatabase encryption at rest, scoped database roles per schema" as L5
+rectangle "Layer 6: Audit and Monitoring\nAudit logging of key actions, daily backups, disaster recovery" as L6
+
+L1 --> L2
+L2 --> L3
+L3 --> L4
+L4 --> L5
+L5 --> L6
+
+@enduml
