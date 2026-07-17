@@ -1,0 +1,50 @@
+@startuml TEDE_Database_Architecture
+skinparam packageStyle rectangle
+
+database "PostgreSQL Database" as DB {
+  package "Security Schema" {
+    [Users]
+    [Roles]
+    [Permissions]
+  }
+  package "Customer Schema" {
+    [Customers]
+    [Quotations]
+    [Invoices]
+    [Payments]
+  }
+  package "Project Schema" {
+    [Projects]
+    [WorkOrders]
+    [Tasks]
+  }
+  package "Workforce Schema" {
+    [Employees]
+    [Attendance]
+    [Leave]
+    [Payroll]
+  }
+  package "Maintenance Schema" {
+    [Assets]
+    [Contracts]
+    [Reports]
+  }
+  package "Inventory Schema" {
+    [Suppliers]
+    [Warehouses]
+    [Inventory]
+    [PurchaseOrders]
+  }
+  package "Marketing Schema" {
+    [Campaigns]
+    [Content]
+    [Analytics]
+  }
+  package "Reporting Schema" {
+    [Dashboards]
+    [KPIs]
+    [Reports]
+  }
+}
+
+@enduml
